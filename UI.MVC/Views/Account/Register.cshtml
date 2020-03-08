@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+@model User
+<div class="row" style="margin-left:0px;">
+    <div class="contact-form-warp">
+        <form class="contact-form">
+            <div class="wrap-input100 validate-input" data-validate="Enter username">
+                <input name="FirstName" class="input100" type="text" placeholder="Your Firstname" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter username">
+                <input name="LastName" class="input100" type="text" placeholder="Your Lastname" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter username">
+                <input name="Email" class="input100" type="email" placeholder="Your Email" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter phone">
+                <input name="Phone" class="input100" type="tel" placeholder="Your Phone" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <input id="password" name="Password" class="input100" type="password" placeholder="Your Password" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <input id="repeatpassword" name="repeatPassword" class="input100" type="password" placeholder="Repeat Password" required>
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <input type="text" id="passworderror" style="background-color:transparent;color:white;"/>
+            <div class="container-login100-form-btn">
+                <button type="submit" formaction='@Url.Action("Register", "Account")' formmethod="post" class="login100-form-btn">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel-footer">
+    @if (ViewBag.Error != null)
+    {
+        <span>@ViewBag.Error</span>
+
+    }
+   
+</div>
+<br />
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#repeatpassword').keyup(function () {
+                if ($('#password').val() != $('#repeatpassword').val()) {
+                    $(':input[type="submit"]').prop('disabled', true);
+                    document.getElementById("passworderror").value = "Password mismatch...";
+                }
+                else {
+                    $(':input[type="submit"]').prop('disabled', false);
+                      document.getElementById("passworderror").value = "";
+                }
+            });
+        });
+    </script>
+}

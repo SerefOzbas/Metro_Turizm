@@ -1,0 +1,46 @@
+﻿@model Ticket
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+<a class="nav-link active" href="~/Home/ListTickets" style="color:white;margin-left:100px;">My Tickets</a><br />
+<div class="row">
+    <div class="contact-form-warp">
+        <form class="contact-form">
+            <label style="color:white">Bus Date :  </label>
+            <div class="input-group mb-3">
+                @Html.DropDownList("busdate", (SelectList)ViewBag.busdate, "Select a Bus Date", htmlAttributes: new { @class = "form-control", required = "Select a BusDate", Name = "BusDate" })
+            </div>
+            <label style="color:white">Departure City :  </label>
+            <div class="input-group mb-3">
+                @Html.DropDownList("city", (SelectList)ViewBag.buscity, "Select a City", htmlAttributes: new { @class = "form-control", required = "Select a City", Name = "DepartureCity" })
+            </div>
+            <label style="color:white">Return City :   </label>
+            <div class="input-group mb-3">
+                @Html.DropDownList("city", (SelectList)ViewBag.buscity, "Select a City", htmlAttributes: new { @class = "form-control", required = "Select a City", Name = "ReturnCity" })
+            </div>
+            <div class="container-login100-form-btn">
+                <button type="submit" formaction='@Url.Action("Index", "Home")' formmethod="post" class="login100-form-btn">
+                    List
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel-footer">
+    @if (ViewBag.Error != null)
+    {
+        <span>@ViewBag.Error</span>
+    }
+</div>
+<br />
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                pickTime: false
+            });
+        });
+    </script>
+}

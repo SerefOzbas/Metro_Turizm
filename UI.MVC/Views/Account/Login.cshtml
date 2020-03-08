@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+@model User
+<div class="row" style="margin-left:80px;">
+    <div class="contact-form-warp">
+        <form class="contact-form">
+            <div class="wrap-input100 validate-input" data-validate="Enter username">
+                <input name="Email" class="input100" type="email" placeholder="Your Email">
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <input name="Password" class="input100" type="password" placeholder="Your Password">
+                <span class="focus-input100" data-placeholder=""></span>
+            </div>
+            <div class="container-login100-form-btn">
+                <button type="submit" formaction='@Url.Action("Login", "Account")' formmethod="post" class="login100-form-btn">
+                    Login
+                </button>
+            </div>
+            <div class="text-center p-t-90">
+                <a class="txt1" href="~/Account/Register">
+                    Sign In
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel-footer">
+    @if (ViewBag.Error != null)
+    {
+        <span>@ViewBag.Error</span>
+    }
+</div>
+<br />

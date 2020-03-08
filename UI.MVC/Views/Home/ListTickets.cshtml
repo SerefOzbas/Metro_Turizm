@@ -1,0 +1,40 @@
+﻿@model List<Ticket>
+@{
+    ViewBag.Title = "ListTickets";
+}
+
+<h2>ListTickets</h2>
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Bus Date</th>
+            <th scope="col">Bus Time</th>
+            <th scope="col">Departure City</th>
+            <th scope="col">Return City</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ticket item in Model)
+        {
+            if (item.UserId == (int)Session["UserID"])
+            {
+                foreach (Bus item2 in ViewBag.Bus)
+                {
+                    if (item2.ID == item.BusId)
+                    {
+                        <tr>
+                            <td>@item2.BusDate</td>
+                            <td>@item2.BusTime</td>
+                            <td>@item2.DepartureCity</td>
+                            <td>@item2.ReturnCity</td>
+                            <td>@item2.Price</td>
+                        </tr>
+                    }
+                }
+            }
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,45 @@
+﻿@model List<Bus>
+@{
+    ViewBag.Title = "BuyTicket";
+}
+
+<h2>BuyTicket</h2>
+
+<table class="table table-bordered table-responsive table-hover">  
+    <thead>
+        <tr>
+            <th scope="col">Bus Date</th>
+            <th scope="col">Bus Time</th>
+            <th scope="col">Departure City</th>
+            <th scope="col">Return City</th>
+            <th scope="col">Price</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Bus item in Model)
+        {
+        <tr>
+            <td>@item.BusDate</td>
+            <td>@item.BusTime</td>
+            <td>@item.DepartureCity</td>
+            <td>@item.ReturnCity</td>
+            <td>@item.Price</td>
+            @if (item.NumberofPeople == 44)
+            {
+                <td> <a class="btn btn-danger">Full</a></td>
+            }
+            else if (item.BusDate==DateTime.Now.ToString("dd/MM/yyyy") && DateTime.Compare(Convert.ToDateTime(item.BusTime), Convert.ToDateTime(DateTime.Now.ToString("H:mm"))) < 0)
+            {
+                <td> <a class="btn btn-danger">Passed</a></td>
+            }
+            else
+            {
+                <td> <a href="@Url.Action("Pay", "Home", new { Id = item.ID })" class="btn btn-success">Pay</a></td>
+            }
+
+        </tr>
+
+        }
+    </tbody>
+</table>
